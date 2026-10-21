@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Paris Board</title>
+    <style>
+    
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f2eb;
+            min-height: 100vh;
+            box-sizing: border-box;
+            
+            
+            display: grid;
+            grid-template-columns: 1fr 400px 1fr; 
+            gap: 20px;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 85vh;
+            align-items: center;
+            position: relative;
+        }
+
+    
+        .center-panel {
+            grid-column: 2;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 2px solid #e0dcd3;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        
+        #panel-title-img {
+            width: 100%;
+            max-width: 280px;     
+            height: 110px;        
+            object-fit: contain;  
+            display: block;       
+            margin: 0 auto 5px auto;
+        }
+
+        .center-panel p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        
+        .sticker {
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            max-width: 160px;
+            height: auto;
+            margin: 15px 0;
+        }
+
+        
+        .sticker:hover {
+            transform: scale(1.1) rotate(5deg) !important;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+
+        
+        #sticker-eiffel   { transform: rotate(-10deg); }
+        #sticker-dessert  { transform: rotate(-8deg);  }
+        #sticker-louvre   { transform: rotate(-5deg);  }
+        #sticker-croissant{ transform: rotate(15deg);  }
+        #sticker-camera   { transform: rotate(-12deg); }
+        #sticker-fashion  { transform: rotate(8deg);   }
+
+        
+        .reset-btn {
+            margin-top: 15px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .reset-btn:hover {
+            background-color: #1a252f;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="left-column">
+        <img src="Eiffel%20Tower.jpg" id="sticker-eiffel" class="sticker" alt="Eiffel Tower" onclick="showInfo('Eiffel Tower', 'The Eiffel Tower is a iron lattice tower on the Champ de Mars in Paris. It was built in 1889 as the entrance arch to the World\'s Fair,it is one of the most recognized monuments in the world.')">
+        
+        <img src="dessert.jpg" id="sticker-dessert" class="sticker" alt="Pain au Chocolat" onclick="showInfo('Pain au Chocolat', 'It is also known as chocolatine in the south of France, this pastry features sweet dark chocolate rolled inside layers of light, buttery, flaky puff pastry.')">
+        
+        <img src="Louvre.jpg" id="sticker-louvre" class="sticker" alt="The Louvre" onclick="showInfo('The Louvre Museum', 'The Louvre is the world\'s largest art museum and a historic monument in Paris.  Many iconic masterpieces, including the Mona Lisa reside here.')">
+    </div>
+
+    
+    <div class="center-panel">
+
+        <img src="heading.jpg" id="panel-title-img" alt="Paris Title"> 
+        
+        <p id="panel-text">Paris, France's capital, is a major European city and a global center for art, fashion, and culture. Click the stickers scattered for a fact</p>
+        <button id="reset-button" class="reset-btn" onclick="resetPanel()">Back to Paris</button>
+    </div>
+
+
+    <div class="right-column">
+        <img src="croissant.jpg" id="sticker-croissant" class="sticker" alt="Croissant" onclick="showInfo('The Croissant', 'The croissant is a buttery and flaky pastry that is a staple of French breakfast culture. It originated in Austria but it later was popularized in france and perfected by parsian bakers in the 19th century')">
+        
+        <img src="camera.jpg" id="sticker-camera" class="sticker" alt="Camera" onclick="showInfo('Parisian Photography', 'Paris is one of the most photographed cities in the world. photographers like Henri Cartier-Bresson pioneered street photography here.')">
+
+        <img src="fashion.jpg" id="sticker-fashion" class="sticker" alt="Parisian Fashion" onclick="showInfo('Paris Haute Couture', 'Paris is known as the fashion capital of the world. It is the birthplace of haute couture and home to fashion houses like Dior, Chanel, and Saint Laurent.')">
+    </div>
+
+
+    <script>
+        const originalText = document.getElementById('panel-text').innerHTML;
+        const resetButton = document.getElementById('reset-button');
+
+        function showInfo(title, description) {
+            document.getElementById('panel-text').innerHTML = `<strong>${title}</strong><br><br>${description}`;
+            resetButton.style.display = 'inline-block';
+        }
+
+        function resetPanel() {
+            document.getElementById('panel-text').innerHTML = originalText;
+            resetButton.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
